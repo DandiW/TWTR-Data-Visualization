@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        {% assets "css_libs" %}
+        <link rel="stylesheet" href="{{ ASSET_URL }}">
+        {% endassets %}
+        {% assets "css_main" %}
+        <link rel="stylesheet" href="{{ ASSET_URL }}">
+        {% endassets %}
+        <title>TWTR</title>
+    </head>
+    <body>
+        <div class="container main">
+            {% block main %}{% endblock -%}
+            {% assets "js_libs" %}
+            <script type="text/javascript" src="{{ ASSET_URL }}"></script>
+            {% endassets %}
+            {% assets "js_main" %}
+            <script type="text/javascript" src="{{ ASSET_URL }}"></script>
+            {% endassets %}
+        </div>
+    </body>
+</html>
