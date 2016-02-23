@@ -42,7 +42,8 @@ will give back something like
 Once you have that, you can then hit the endpoint
 ```
 /api/city/chicago/%23NationalMargaritaDay/:)
-``` to see happy tweets or
+```
+to see happy tweets or
 ```
 /api/city/chicago/%23NationalMargaritaDay/:(
 ```
