@@ -4,4 +4,3 @@ Flask-SQLAlchemy==2.1
 sqlalchemy==1.0.12
 Flask-Assets==0.11
 requests==2.9.1
-python-twitter==3.0rc1

@@ -42,8 +42,7 @@ d3.csv("static/img/us-cities.csv", function(data) {
      .style("fill", "#F5A75C")
      .style("opacity", 0.75);
   
-})
-
+});
 function showCity(city) {
   alert(city.place);
-}
+};

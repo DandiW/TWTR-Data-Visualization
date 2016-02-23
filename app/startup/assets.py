@@ -6,6 +6,7 @@ js_libs = Bundle("js/jquery.min.js",
                 "js/bootstrap.min.js",
                 "js/d3.js",
                 "js/foundation.min.js",
+                "js/knockout.js",
                 "js/what-input.min.js",
                  output="js/libs.js")
 
