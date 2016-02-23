@@ -23,3 +23,15 @@ svg {
   width: 100%;
 }
 
+.twtr{
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    font-size: 30px;
+    color: black;
+    text-align: center;
+    
+}
+
+.top10{
+    background-color: #F7F7F7;
+    
+}
