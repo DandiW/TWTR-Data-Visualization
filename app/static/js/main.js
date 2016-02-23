@@ -1,23 +1,49 @@
-//$(document).foundation();
-import json
-var path = d3.geo.path();
-d3.json("GEOjson.json", function(json){
-
-//append circles of varying radius to cities
-//Boston, Chicago, Denver, District of Columbia, Seattle, San Francisco, New York,
-//Miami, Los Angeles, Minneapolis
-});
-/*
-var svg = d3.select("body")
+var w = 1000;
+var h = 700;
+var svg = d3.select(".map")
             .append("svg")
-            .style("width", 250)
-            .style("height", 250)
-var img = svg.selectAll("image");
-img.enter()
-    .append("svg:image")
-    .attr("img/map.png")
-    .attr("x", "150")
-    .attr("y", "150")
-    .attr("width", "150")
-    .attr("height", "150");
-*/
+            .attr("width", w)
+            .attr("height", h);
+var projection = d3.geo.albersUsa()
+                   .translate([w/2, h/2])
+                   .scale([1200]);
+var path = d3.geo.path().projection(projection);
+d3.json("static/img/us-states.json", function(json) {
+  svg.selectAll("path")
+     .data(json.features)
+     .enter()
+     .append("path").style("fill", "#D7DBF6")
+     .attr("d", path)
+     .style("fill", "#F5F6FF");
+});
+
+d3.csv("static/img/us-cities.csv", function(data) {
+  
+  svg.selectAll("circle")
+     .data(data)
+     .enter()
+     .append("circle")
+     .attr("cx", function(d) {
+       return projection([d.lon, d.lat])[0];
+     })
+     .attr("cy", function(d) {
+       return projection([d.lon, d.lat])[1];
+     })
+     .attr("r", function(d) {
+      return Math.sqrt(parseInt(d.population) * 0.00015);
+     })
+     .on({
+        "mouseover": function(d) { console.log(d.place) },
+        "click":  function(d) { 
+          svg.selectAll("circle").style("fill", "#F5A75C");
+          d3.select(this).style("fill", "#4372A0");
+          showCity(d) }, 
+      })
+     .style("fill", "#F5A75C")
+     .style("opacity", 0.75);
+  
+})
+
+function showCity(city) {
+  alert(city.place);
+}

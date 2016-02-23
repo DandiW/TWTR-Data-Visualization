@@ -1,5 +1,10 @@
-/*CSS Goes Here!*/
+body {
+  background-color: #62c2cc;
+  min-height: 100%;
+  width: 100%;
+}
 
-#main_title{
-    text-align:center;
+svg {
+  display: block;
+  margin:auto;
 }

@@ -1,0 +1,3 @@
+startup\settings.py
+.DS_STORE
+app/static/.webassets-cache
