@@ -9,96 +9,51 @@
 
     <div class="row">
 
-    <!--    LEFT SIDE: Top 10 topic -->
-            <div class="medium-5 columns top10">
+    	<!--    LEFT SIDE: Top 10 topic -->
+        <div class="medium-5 columns top10">
+            <div class = "section_title ">Hottest 10 Topics </div>
 
-                 <div class = "section_title ">Hottest 10 Topics 
-                </div>
-<!--    progress bar  -->
-<!--
-            <div class="progress" role="progressbar" tabindex="0" aria-valuenow="20" aria-valuemin="0" aria-valuetext="25 percent" aria-valuemax="100">
-            <span class="progress-meter" style="width: 25%">
-              <p class="progress-meter-text">25%</p>
-            </span>
-            </div>  
--->
-          
-<!--   10 topic with person icon-->
-                
-          <div class ="medium-12 hvr-float hvr-fade"> 
-              <div class = "topic_title"> Topic 1 <br></div>
-                <a STYLE="text-decoration:none" href="#" class="fa fa-male fa-2x population">10,000 posts</a>
-              
-         </div>
-           <div class ="medium-12 hvr-float hvr-fade"> 
-              <div class = "topic_title"> Topic 2 <br></div>
-                 <a STYLE="text-decoration:none" href="#" class="fa fa-male fa-2x population">10,000 posts</a>
-              
-         </div>
-          <div class ="medium-12 hvr-float hvr-fade"> 
-              <div class = "topic_title"> Topic 3 <br></div>
-                 <a STYLE="text-decoration:none" href="#" class="fa fa-male fa-2x population">10,000 posts</a>
-              
-         </div>
-                
-        <div class ="medium-12 hvr-float hvr-fade"> 
-              <div class = "topic_title"> Topic 4 <br></div>
-                 <a STYLE="text-decoration:none" href="#" class="fa fa-male fa-2x population">10,000 posts</a>
-              
-         </div>
-                
-         <div class ="medium-12 hvr-float hvr-fade"> 
-              <div class = "topic_title"> Topic 5 <br></div>
-                 <a STYLE="text-decoration:none" href="#" class="fa fa-male fa-2x population">10,000 posts</a>
-              
-         </div>
-                
-       <div class ="medium-12 hvr-float hvr-fade"> 
-              <div class = "topic_title"> Topic 6 <br></div>
-                 <a STYLE="text-decoration:none" href="#" class="fa fa-male fa-2x population">10,000 posts</a>
-              
-         </div>
-                
-      <div class ="medium-12 hvr-float hvr-fade"> 
-              <div class = "topic_title"> Topic 7 <br></div>
-                 <a STYLE="text-decoration:none" href="#" class="fa fa-male fa-2x population">10,000 posts</a>
-              
-         </div>
-      <div class ="medium-12 hvr-float hvr-fade"> 
-              <div class = "topic_title"> Topic 8 <br></div>
-                 <a STYLE="text-decoration:none" href="#" class="fa fa-male fa-2x population">10,000 posts</a>
-              
-         </div>
-         <div class ="medium-12 hvr-float hvr-fade"> 
-              <div class = "topic_title"> Topic 9 <br></div>
-                 <a STYLE="text-decoration:none" href="#" class="fa fa-male fa-2x population">10,000 posts</a>
-              
-         </div>
-         <div class ="medium-12 hvr-float hvr-fade"> 
-              <div class = "topic_title"> Topic 10 <br></div>
-                 <a STYLE="text-decoration:none" href="#" class="fa fa-male fa-2x population">10,000 posts</a>
-              
-         </div>
-              
-        
-<!--   10 topic list ends here-->
-                
-           
-
-</div>
-
-    <!--  RIGHT SIDE: tweets  -->
-
-           <div class="medium-7 columns tsection">
-               <div class="section_title">Tweets Section</div>
-               
-               
-               
-               
-           </div>
+			<!--   10 topic with person icon-->
+			<div class="" data-bind="foreach: trends">
 
 
-    </div>
+				<a class="topic_title medium-12 hvr-float hvr-fade" href="#" data-bind='click: $parent.showTweets.bind($data, $data.query)'>
+					<span data-bind="text: $data.name"> </span>
+					<br>
+					<div STYLE="text-decoration:none" class="fa fa-male fa-2x population">
+						<span data-bind="text: $data.tweet_volume"> </span>
+					</div>
+				</a>
+
+
+
+			</div>
+        </div>
+
+                       
+
+		<!--  RIGHT SIDE: tweets  -->
+		<div>
+		    <div class="medium-7 columns tsection">
+	           <div class="section_title">Tweets Section</div>       
+	       </div>
+
+		    <div class="tweetSample" data-bind="foreach: happyTweets">
+				<div class="tweet">
+					<span data-bind="text: $data.text"> </span>
+				</div>
+				<br>
+			</div>
+			<div class="tweetSample" data-bind="foreach: sadTweets">
+				<div class="tweet">
+					<span data-bind="text: $data.text"> </span>
+				</div>
+				<br>
+			</div>
+		</div>
+
+	</div>    
+
 
 </div>
 
