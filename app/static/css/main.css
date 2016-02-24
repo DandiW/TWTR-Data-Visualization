@@ -2,7 +2,7 @@ body {
   background-color: #62c2cc;
   min-height: 100%;
   width: 100%;
-  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  font-family: "Dosis", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
   font-weight: 300;
 }
 
@@ -52,7 +52,7 @@ svg {
 
 .topic_title{
     
-    font-family: 'Architects Daughter', cursive;
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
     font-size: 25px;
     font-weight: 500;
     padding: 7px;
@@ -61,13 +61,13 @@ svg {
 /*below is for hidden section*/
 
 .population{
-    color: #8A494F;
+    color: #cccccc;
     text-decoration: none;
     
 }
 
-a:hover, a:focus, a:active {
-    color:  #F4B133;
+.population:hover, .population:focus, .population:active {
+    color: #9ddcd7;
 }
 
 
@@ -89,9 +89,9 @@ a:hover, a:focus, a:active {
 .hvr-float:hover,
 .hvr-float:focus,
 .hvr-float:active {
-  transform: translateY(-8px);
-  
+  transform: translateX(8px);
 }
+
 
 /* Fade */
 .hvr-fade {

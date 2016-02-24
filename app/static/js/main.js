@@ -44,9 +44,80 @@ d3.csv("static/img/us-cities.csv", function(data) {
   
 });
 function showCity(city) {
-  alert(city.place);
+  viewModel.changeCity(city.place);
 };
 
-// ---------------add after this-------------------
+// This is a simple *viewmodel* - JavaScript that defines the data and behavior of your UI
+function AppViewModel() {
+    this.cityName = ko.observable("Select a City"); 
+    this.trends = ko.observableArray();
+    this.happyTweets = ko.observableArray();
+    this.sadTweets = ko.observableArray();
 
+    this.changeCity = function(cityName) {
+      this.cityName(cityName);
+
+      //call api to get trends
+      var cityUrl = "/api/city/" + cityName
+      $.ajax({
+          url: cityUrl,
+          success: function(result){
+            var trendResult = JSON.parse(result);
+            //sort results to get top 10
+            trendList = trendResult[0].trends;
+
+            for (var i = 0; i < trendList.length; i++){
+              if(trendList[i].tweet_volume === null){
+                trendList.splice(i, 1);
+                i--;
+              }
+            }
+            trendList.sort(function(a, b) {
+                return parseFloat(a.tweet_volume) - parseFloat(b.tweet_volume);
+            });
+            trendList.reverse();
+
+            //set trends variable
+            viewModel.trends(trendList);
+            //console.log(trendList);
+          }
+      });
+    }
+
+    this.showTweets = function(trendQuery){
+      //call api to get tweets
+      var happyUrl = "/api/city/" + viewModel.cityName() + "/" + trendQuery + "/:)"
+      var sadUrl = "/api/city/" + viewModel.cityName() + "/"+ trendQuery + "/:("
+      $.ajax({
+          url: happyUrl,
+          success: function(result){
+            var tweetResult = JSON.parse(result);
+            console.log(tweetResult);
+            tweetList = tweetResult.statuses;
+            if (tweetList.length > 5){
+              tweetList.slice(0,4);
+            }
+            viewModel.happyTweets(tweetList);
+            console.log(tweetList);
+          }
+      });
+      $.ajax({
+          url: sadUrl,
+          success: function(result){
+            var tweetResult = JSON.parse(result);
+            console.log(tweetResult);
+            tweetList = tweetResult.statuses;
+            if (tweetList.length > 5){
+              tweetList.slice(0,4);
+            }
+            viewModel.sadTweets(tweetList);
+          }
+      });
+    }
+      
+}
+
+// Activates knockout.js
+viewModel = new AppViewModel();
+ko.applyBindings(viewModel);
 
