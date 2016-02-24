@@ -24,14 +24,79 @@ svg {
 }
 
 .twtr{
-    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
-    font-size: 30px;
-    color: black;
+    font-family: 'Dosis', sans-serif;
+    font-weight: 700;
+    font-size: 50px;
+    color: #293C33;
     text-align: center;
+    z-index: 100;
     
 }
 
-.top10{
+.row{
     background-color: #F7F7F7;
+    font-family: 'Dosis', sans-serif;
     
+}
+
+.section_title{
+    font-family: 'Dosis', sans-serif;
+    font-size: 30px;
+    color: #293C33;
+    
+}
+
+.topic_title{
+    
+    font-family: 'Architects Daughter', cursive;
+    font-size: 25px;
+    font-weight: 500;
+}
+
+/*below is for hidden section*/
+
+.population{
+    color: #8A494F;
+    
+}
+
+/* Float */
+
+.hvr-float {
+  display: inline-block;
+  vertical-align: middle;
+  transform: translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  backface-visibility: hidden;
+  -moz-osx-font-smoothing: grayscale;
+  transition-duration: 0.3s;
+  transition-property: transform;
+  transition-timing-function: ease-out;
+}
+.hvr-float:hover,
+.hvr-float:focus,
+.hvr-float:active {
+  transform: translateY(-8px);
+  text-decoration: none;
+}
+
+/* Fade */
+.hvr-fade {
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -moz-osx-font-smoothing: grayscale;
+  overflow: hidden;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-property: color, background-color;
+  transition-property: color, background-color;
+}
+.hvr-fade:hover, .hvr-fade:focus, .hvr-fade:active {
+  background-color: #FCE8D5;
+  color:  #F4B133;
 }

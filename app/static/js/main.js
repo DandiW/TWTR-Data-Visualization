@@ -46,3 +46,7 @@ d3.csv("static/img/us-cities.csv", function(data) {
 function showCity(city) {
   alert(city.place);
 };
+
+// ---------------add after this-------------------
+
+
