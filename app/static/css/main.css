@@ -108,3 +108,11 @@ svg {
 .hvr-fade:hover, .hvr-fade:focus, .hvr-fade:active {
   background-color: white;
 }
+.hvr-fade:hover .population, .hvr-fade:focus .population, .hvr-fade:active .population{
+  color: #62c2cc;
+}
+
+.fa .fa-male .population{
+  font-size: 5pt;
+}
+
