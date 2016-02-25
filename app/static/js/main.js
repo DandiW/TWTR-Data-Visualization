@@ -64,6 +64,8 @@ function AppViewModel() {
               for (var i = 0; i < trendList.length; i++){
                 if(trendList[i].tweet_volume !== null){
                   trendList[i].tweet_volume_scaled = parseInt(trendList[i].tweet_volume / 30000);
+                } else {
+                  trendList[i].tweet_volume_scaled = 0;
                 }
               }
               if (trendList.length > 10){
