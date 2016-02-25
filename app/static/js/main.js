@@ -103,7 +103,7 @@ function AppViewModel() {
             console.log(tweetResult);
             tweetList = tweetResult.statuses;
             if (tweetList.length > 5){
-              tweetList.slice(0,4);
+              tweetList = tweetList.slice(0,5);
             }
             viewModel.happyTweets(tweetList);
             console.log(tweetList);
@@ -116,7 +116,7 @@ function AppViewModel() {
             console.log(tweetResult);
             tweetList = tweetResult.statuses;
             if (tweetList.length > 5){
-              tweetList.slice(0,4);
+              tweetList = tweetList.slice(0,5);
             }
             viewModel.sadTweets(tweetList);
           }
