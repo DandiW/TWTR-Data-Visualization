@@ -71,12 +71,20 @@ function AppViewModel() {
                 trendList.splice(i, 1);
                 i--;
               }
+              else {
+                trendList[i].tweet_volume_scaled = parseInt(trendList[i].tweet_volume / 30000);
+              }
+
             }
             trendList.sort(function(a, b) {
                 return parseFloat(a.tweet_volume) - parseFloat(b.tweet_volume);
             });
+
             trendList.reverse();
 
+            if (trendList.length > 10){
+              trendList = trendList.slice(0,9);
+            }
             //set trends variable
             viewModel.trends(trendList);
             //console.log(trendList);

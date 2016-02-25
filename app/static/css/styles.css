@@ -63,7 +63,7 @@ svg {
 .population{
     color: #cccccc;
     text-decoration: none;
-    
+    padding: 0 0 0 0;
 }
 
 .population:hover, .population:focus, .population:active {
@@ -91,8 +91,6 @@ svg {
 .hvr-float:active {
   transform: translateX(8px);
 }
-
-
 
 
 /* Fade */
