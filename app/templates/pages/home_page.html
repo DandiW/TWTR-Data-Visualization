@@ -17,10 +17,10 @@
 			<div class="" data-bind="foreach: trends">
 
 
-				<a class="topic_title medium-12 hvr-float hvr-fade" href="#" data-bind='click: $parent.showTweets.bind($data, $data.query)'>
+				<a STYLE="text-decoration:none" class="topic_title medium-12 hvr-float hvr-fade" href="#" data-bind='click: $parent.showTweets.bind($data, $data.query)'>
 					<span data-bind="text: $data.name"> </span>
 					<br>
-					<div STYLE="text-decoration:none" class="population">
+					<div class="population">
 						<span data-bind="text: $data.tweet_volume"> </span>
 					</div>
 					<div data-bind="foreach: new Array($data.tweet_volume_scaled)">
