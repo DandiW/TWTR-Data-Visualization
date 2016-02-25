@@ -54,6 +54,8 @@ function AppViewModel() {
 
     this.changeCity = function(cityName) {
       this.cityName(cityName);
+      $(".happy-tweets").html("");
+      $(".sad-tweets").html("");
       var cityUrl = "/api/city/" + cityName
       $.ajax({
           url: cityUrl,

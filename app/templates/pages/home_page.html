@@ -6,9 +6,8 @@
 <div class="map"></div>
 <div class="header"><span data-bind="text: cityName"></span></div>
 <div class="body">
-
   <div class="row">
-    <div class="col-md-6 top10">
+    <div class="col-md-5 top10">
       <div class = "section_title ">Hottest 10 Topics </div>
       <div class="" data-bind="foreach: trends">
         <a STYLE="text-decoration:none" class="topic_title medium-12 hvr-float hvr-fade" href="#" data-bind='click: $parent.showTweets.bind($data, $data.query)'>
@@ -24,9 +23,8 @@
         </a>
       </div>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-7 all-tweets">
       <div class="happy-tweets"></div>
-      <hr>
       <div class="sad-tweets"></div>
     </div>
   </div>    
