@@ -5,64 +5,30 @@
 <div class ="twtr"> #TWTR</div>
 <div class="map"></div>
 <div class="header"><span data-bind="text: cityName"></span></div>
-<div class="tweets">
+<div class="body">
 
-    <div class="row">
-
-    	<!--    LEFT SIDE: Top 10 topic -->
-        <div class="medium-5 columns top10">
-            <div class = "section_title ">Hottest 10 Topics </div>
-
-			<!--   10 topic with person icon-->
-			<div class="" data-bind="foreach: trends">
-
-
-				<a STYLE="text-decoration:none" class="topic_title medium-12 hvr-float hvr-fade" href="#" data-bind='click: $parent.showTweets.bind($data, $data.query)'>
-					<span data-bind="text: $data.name"> </span>
-					<br>
-					<div class="population">
-						<span data-bind="text: $data.tweet_volume"> </span>
-					</div>
-					<div data-bind="foreach: new Array($data.tweet_volume_scaled)">
-						<div STYLE="text-decoration:none" class="fa fa-male population" > </div>
-					</div>
-					
-				</a>
-
-
-
-			</div>
-        </div>
-
-                       
-
-		<!--  RIGHT SIDE: tweets  -->
-		<div>
-		    <div class="medium-7 columns tsection">
-	           <div class="section_title">Tweets Section</div>       
-	       </div>
-
-		    <div class="tweetSample" data-bind="foreach: happyTweets">
-				<div class="tweet">
-					<span data-bind="text: $data.text"> </span>
-				</div>
-				<br>
-			</div>
-			<div class="tweetSample" data-bind="foreach: sadTweets">
-				<div class="tweet">
-					<span data-bind="text: $data.text"> </span>
-				</div>
-				<br>
-			</div>
-		</div>
-
-	</div>    
-
-
+  <div class="row">
+    <div class="col-md-6 top10">
+      <div class = "section_title ">Hottest 10 Topics </div>
+      <div class="" data-bind="foreach: trends">
+        <a STYLE="text-decoration:none" class="topic_title medium-12 hvr-float hvr-fade" href="#" data-bind='click: $parent.showTweets.bind($data, $data.query)'>
+          <span data-bind="text: $data.name"> </span>
+          <br>
+          <div class="population">
+            <span data-bind="text: $data.tweet_volume"> </span>
+          </div>
+          <div data-bind="foreach: new Array($data.tweet_volume_scaled)">
+            <div style="text-decoration:none" class="fa fa-male population">
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="happy-tweets"></div>
+      <hr>
+      <div class="sad-tweets"></div>
+    </div>
+  </div>    
 </div>
-
-
-
-
 {% endblock %}
-

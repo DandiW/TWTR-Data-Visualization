@@ -17,11 +17,10 @@ def get_tweets(city_name, trend, sentiment):
   city = City.query.filter(City.city == name).first()
   if city is None:
     return 'invalid city'
-  geocode = "{0}%2C{1}%2C15mi".format(city.latitude, city.longitude)
-  url = base_url.format("search/tweets.json?q=" + requests.utils.quote(trend) + requests.utils.quote(sentiment) + "&geocode=" + geocode)
-  print url
-  api_response = requests.get(url=url, auth=oauth).text
-  return api_response
+  geocode = "&geocode={0}%2C{1}%2C100mi".format(city.latitude, city.longitude)
+  url = base_url.format("search/tweets.json?q=" + requests.utils.quote(trend) + requests.utils.quote(sentiment))
+  api_response = requests.get(url=url, auth=oauth).json()
+  return jsonify(api_response)
 
 @app.route('/api/city/<string:name>')
 def city(name):
@@ -35,7 +34,6 @@ def city(name):
       return str(cached_response.response)
     else:
       db.delete(cached_response)
-  print "hi"
   url = base_url.format("trends/place.json?id=" + city.woeid)
   api_response = requests.get(url=url, auth=oauth).text
   response = Response(time=datetime.now(), city=name, response=str(api_response))

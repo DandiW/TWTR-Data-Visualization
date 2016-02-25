@@ -33,7 +33,6 @@ d3.csv("static/img/us-cities.csv", function(data) {
       return Math.sqrt(parseInt(d.population) * 0.00015);
      })
      .on({
-        "mouseover": function(d) { console.log(d.place) },
         "click":  function(d) { 
           svg.selectAll("circle").style("fill", "#F5A75C");
           d3.select(this).style("fill", "#4372A0");
@@ -47,7 +46,6 @@ function showCity(city) {
   viewModel.changeCity(city.place);
 };
 
-// This is a simple *viewmodel* - JavaScript that defines the data and behavior of your UI
 function AppViewModel() {
     this.cityName = ko.observable("Select a City"); 
     this.trends = ko.observableArray();
@@ -56,76 +54,86 @@ function AppViewModel() {
 
     this.changeCity = function(cityName) {
       this.cityName(cityName);
-
-      //call api to get trends
       var cityUrl = "/api/city/" + cityName
       $.ajax({
           url: cityUrl,
           success: function(result){
             var trendResult = JSON.parse(result);
-            //sort results to get top 10
-            trendList = trendResult[0].trends;
-
-            for (var i = 0; i < trendList.length; i++){
-              if(trendList[i].tweet_volume === null){
-                trendList.splice(i, 1);
-                i--;
+            if (trendResult.length > 0) {
+              trendList = trendResult[0].trends;
+              for (var i = 0; i < trendList.length; i++){
+                if(trendList[i].tweet_volume !== null){
+                  trendList[i].tweet_volume_scaled = parseInt(trendList[i].tweet_volume / 30000);
+                }
               }
-              else {
-                trendList[i].tweet_volume_scaled = parseInt(trendList[i].tweet_volume / 30000);
+              if (trendList.length > 10){
+                trendList = trendList.slice(0,9);
               }
-
+              viewModel.trends(trendList);
+            } else {
+              viewModel.trends([]);  
             }
-            trendList.sort(function(a, b) {
-                return parseFloat(a.tweet_volume) - parseFloat(b.tweet_volume);
-            });
-
-            trendList.reverse();
-
-            if (trendList.length > 10){
-              trendList = trendList.slice(0,9);
-            }
-            //set trends variable
-            viewModel.trends(trendList);
-            //console.log(trendList);
           }
       });
     }
 
     this.showTweets = function(trendQuery){
       //call api to get tweets
-      var happyUrl = "/api/city/" + viewModel.cityName() + "/" + trendQuery + "/:)"
-      var sadUrl = "/api/city/" + viewModel.cityName() + "/"+ trendQuery + "/:("
+      var happyUrl = "/api/city/" + viewModel.cityName().trim() + "/" + trendQuery.trim() + "/:)";
+      var sadUrl = "/api/city/" + viewModel.cityName().trim() + "/"+ trendQuery.trim() + "/:(";
       $.ajax({
           url: happyUrl,
+          datatype: 'json',
           success: function(result){
-            var tweetResult = JSON.parse(result);
-            console.log(tweetResult);
-            tweetList = tweetResult.statuses;
-            if (tweetList.length > 5){
-              tweetList = tweetList.slice(0,5);
+            $( ".happy-tweet").remove();
+            $( ".happy-face").remove();
+            var statuses = result.statuses;
+            bound = Math.min(3, statuses.length);
+            for(var i=0; i < bound; i++){
+              $('.happy-tweets').append("<div class='row'><div class='happy-face col-sm-1'><img src='https://twemoji.maxcdn.com/72x72/1f604.png'></div><div class='col-sm-11 happy-tweet' id='happy-"
+               + statuses[i].id_str
+                + "'></div></div>");
+              twttr.widgets.createTweet(statuses[i].id_str,document.getElementById("happy-" + statuses[i].id_str));
             }
-            viewModel.happyTweets(tweetList);
-            console.log(tweetList);
           }
       });
       $.ajax({
           url: sadUrl,
+          datatype: 'json',
           success: function(result){
-            var tweetResult = JSON.parse(result);
-            console.log(tweetResult);
-            tweetList = tweetResult.statuses;
-            if (tweetList.length > 5){
-              tweetList = tweetList.slice(0,5);
+            $( ".sad-tweet").remove();
+            $( ".sad-face").remove();
+            var statuses = result.statuses;
+            bound = Math.min(3, statuses.length);
+            for(var i=0; i < bound; i++){
+              $('.sad-tweets').append("<div class='row'><div class='sad-face col-sm-1'><img src='https://twemoji.maxcdn.com/72x72/1f61e.png'></div><div class='sad-tweet' id='sad-"
+               + statuses[i].id_str
+                + "'></div></div>");
+              twttr.widgets.createTweet(statuses[i].id_str,document.getElementById("sad-" + statuses[i].id_str));
             }
-            viewModel.sadTweets(tweetList);
           }
       });
     }
       
 }
 
-// Activates knockout.js
 viewModel = new AppViewModel();
 ko.applyBindings(viewModel);
+
+window.twttr = (function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0],
+    t = window.twttr || {};
+  if (d.getElementById(id)) return t;
+  js = d.createElement(s);
+  js.id = id;
+  js.src = "https://platform.twitter.com/widgets.js";
+  fjs.parentNode.insertBefore(js, fjs);
+ 
+  t._e = [];
+  t.ready = function(f) {
+    t._e.push(f);
+  };
+ 
+  return t;
+}(document, "script", "twitter-wjs"));
 

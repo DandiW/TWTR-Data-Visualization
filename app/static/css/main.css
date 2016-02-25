@@ -34,11 +34,9 @@ svg {
     
 }
 
-/* ------------------------------section for top 10 topics and tweets----------------------*/
 .row{
     background-color: #F7F7F7;
-    font-family: 'Dosis', sans-serif;
-    
+    font-family: 'Dosis', sans-serif;    
 }
 
 .section_title{
@@ -47,7 +45,6 @@ svg {
     color: #293C33;
     padding:20px;
     text-align: center;
-    
 }
 
 .topic_title{
@@ -114,5 +111,17 @@ svg {
 
 .fa .fa-male .population{
   font-size: 5pt;
+}
+
+.row {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display:         flex;
+}
+
+.col-sm-1 {
+  display: flex;
+  align-items: center;
 }
 
